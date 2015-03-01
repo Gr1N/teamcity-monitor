@@ -9,7 +9,9 @@ type APIController struct {
 }
 
 func (c *APIController) URLMapping() {
+	c.Mapping("Builds", c.Builds)
 	c.Mapping("BuildsStatus", c.BuildsStatus)
+	c.Mapping("BuildsStatistics", c.BuildsStatistics)
 }
 
 // @router /builds [get]
