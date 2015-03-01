@@ -127,6 +127,11 @@ func BuildsStatus() []*BuildStatus {
 	for _ = range urls {
 		result := <-results
 
+		resp := result.Resp
+		if resp == nil || resp.StatusCode != http.StatusOK {
+			continue
+		}
+
 		buildStatus := &BuildStatus{}
 		json.Unmarshal([]byte(result.Body), &buildStatus)
 
