@@ -19,7 +19,6 @@ type HttpResponse struct {
 }
 
 type BuildStatus struct {
-	Id          int    `json:"id"`
 	BuildTypeId string `json:"buildTypeId"`
 	Status      string `json:"status"`
 	StatusText  string `json:"statusText"`
@@ -116,14 +115,14 @@ func Builds() map[string]interface{} {
 	return builds
 }
 
-func BuildsStatus() []*BuildStatus {
+func BuildsStatus() []map[string]interface{} {
 	urls := make([]string, len(tcBuilds))
 	for i, build := range tcBuilds {
 		urls[i] = fmt.Sprintf(tcLocationBuildTypes, tcUrl, build)
 	}
 
 	results := asyncHttpGets(urls)
-	buildsStatus := []*BuildStatus{}
+	buildsStatus := []map[string]interface{}{}
 	for _ = range urls {
 		result := <-results
 
@@ -135,7 +134,13 @@ func BuildsStatus() []*BuildStatus {
 		buildStatus := &BuildStatus{}
 		json.Unmarshal([]byte(result.Body), &buildStatus)
 
-		buildsStatus = append(buildsStatus, buildStatus)
+		buildsStatus = append(buildsStatus, map[string]interface{}{
+			"id":           buildStatus.BuildTypeId,
+			"name":         buildStatus.BuildType.Name,
+			"status":       buildStatus.Status,
+			"statusText":   buildStatus.StatusText,
+			"lastCommiter": buildStatus.LastChanges.Change[0].Username,
+		})
 	}
 
 	return buildsStatus
