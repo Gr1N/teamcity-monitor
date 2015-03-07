@@ -1,0 +1,80 @@
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  background: #EEE;
+  margin-bottom: 15px;
+}
+
+.item {
+  position: relative;
+  width:  320px;
+  height: 160px;
+  float: left;
+  border: 1px solid;
+  background: #299129;
+  margin: 3px;
+}
+
+.item > * {
+  margin: 0;
+  padding: 0;
+}
+
+.item.failure {
+    background: #D46A6A;
+    /*animation: blink 4s linear infinite;
+    -moz-animation: blink 4s linear infinite;
+    -webkit-animation: blink 4s linear infinite;
+    -o-animation: blink 4s linear infinite;*/
+}
+
+@keyframes blink {
+    0% {background: #D46A6A;}
+    50% {background: rgb(220, 220, 220);}
+    100% {background: #D46A6A;}
+}
+
+@-webkit-keyframes blink {
+    0% {background: #D46A6A;}
+    50% {background: DarkGray;}
+    100% {background: #D46A6A;}
+}
+
+@-moz-keyframes blink {
+    0% {background: #D46A6A;}
+    50% {background: rgb(220, 220, 220);}
+    100% {background: #D46A6A;}
+}
+
+@-o-keyframes blink {
+    0% {background: #D46A6A;}
+    50% {background: rgb(220, 220, 220);}
+    100% {background: #D46A6A;}
+}
+
+.item .name {
+  position: absolute;
+
+  left: 10px;
+  top: 10px;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.item .status {
+  position: absolute;
+
+  left: 10px;
+  top: 50%;
+  font-size: 18px;
+}
+
+.item .commiter {
+  position: absolute;
+
+  left: 10px;
+  top: 80%;
+  font-size: 25px;
+}

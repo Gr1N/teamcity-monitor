@@ -80,3 +80,4 @@ bower_components
 conf/teamcity.json
 lastupdate.tmp
 teamcity-monitor
+static/assets
