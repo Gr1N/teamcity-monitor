@@ -134,13 +134,20 @@ func BuildsStatus() []map[string]interface{} {
 		buildStatus := &BuildStatus{}
 		json.Unmarshal([]byte(result.Body), &buildStatus)
 
-		buildsStatus = append(buildsStatus, map[string]interface{}{
-			"id":           buildStatus.BuildTypeId,
-			"name":         buildStatus.BuildType.Name,
-			"status":       buildStatus.Status,
-			"statusText":   buildStatus.StatusText,
-			"lastCommiter": buildStatus.LastChanges.Change[0].Username,
-		})
+		buildStatusMap := map[string]interface{}{
+			"id":         buildStatus.BuildTypeId,
+			"name":       buildStatus.BuildType.Name,
+			"status":     buildStatus.Status,
+			"statusText": buildStatus.StatusText,
+		}
+		buildsStatusChange := buildStatus.LastChanges.Change
+		if len(buildsStatusChange) > 0 {
+			buildStatusMap["lastCommiter"] = buildsStatusChange[0].Username
+		} else {
+			buildStatusMap["lastCommiter"] = nil
+		}
+
+		buildsStatus = append(buildsStatus, buildStatusMap)
 	}
 
 	return buildsStatus
