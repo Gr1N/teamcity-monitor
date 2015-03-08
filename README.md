@@ -8,7 +8,7 @@ Why another monitoring tool:
 * Written in Go (server-side)
 
 
-# Install
+# Installation
 
 TBD
 
