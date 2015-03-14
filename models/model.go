@@ -40,7 +40,7 @@ var (
 	tcUrl              string
 	tcBasicAuthEncoded string
 	tcBuilds           []string
-	tcBuildsLaout      [][]string
+	tcBuildsLaout      [][]map[string]interface{}
 )
 
 func init() {
@@ -69,10 +69,10 @@ func init() {
 	tcRawBuildsLaoutCasted := tcRawBuildsLaout.([]interface{})
 	for _, buildLayout := range tcRawBuildsLaoutCasted {
 		buildLayoutCasted := buildLayout.([]interface{})
-		layout := make([]string, len(buildLayoutCasted))
+		layout := make([]map[string]interface{}, len(buildLayoutCasted))
 
 		for i := range buildLayoutCasted {
-			layout[i] = buildLayoutCasted[i].(string)
+			layout[i] = buildLayoutCasted[i].(map[string]interface{})
 		}
 
 		tcBuildsLaout = append(tcBuildsLaout, layout)

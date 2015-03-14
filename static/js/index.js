@@ -8,7 +8,6 @@ var docReady = require('doc-ready'),
     content,
 
     buildsTmpl = _.template(document.querySelector('#js-tmpl-builds').innerHTML),
-    buildTmpl = _.template(document.querySelector('#js-tmpl-build').innerHTML),
 
     urls = {},
     builds = [],
@@ -71,14 +70,11 @@ function getBuildsStatus() {
 function updateBuilds(builds) {
     _.forEach(builds, function(build) {
         var target = document.querySelector('.' + build.id),
+            targetCommiter = target.querySelector('.js-commiter'),
             hasFailureClass = target.classList.contains(classBuildFailure),
             failureClassNeeded = build.status === buildStatus.failure;
 
-        target.innerHTML = buildTmpl({
-            name: build.name,
-            statusText: build.statusText,
-            lastCommiter: build.lastCommiter
-        });
+        targetCommiter.innerHTML = build.lastCommiter;
 
         if (!failureClassNeeded && hasFailureClass) {
             target.classList.remove(classBuildFailure);

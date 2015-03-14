@@ -9,8 +9,8 @@
 
 .item {
   position: relative;
-  width:  320px;
-  height: 160px;
+  width:  260px;
+  height: 200px;
   float: left;
   border: 1px solid;
   background: #299129;
@@ -27,26 +27,17 @@
 }
 
 .item .name {
-  position: absolute;
-
-  left: 10px;
+  position: relative;
+  text-align: center;
   top: 10px;
+  font-family: serif;
   font-weight: bold;
-  font-size: 30px;
-}
-
-.item .status {
-  position: absolute;
-
-  left: 10px;
-  top: 50%;
-  font-size: 18px;
+  font-size: 40px;
 }
 
 .item .commiter {
-  position: absolute;
-
-  left: 10px;
-  top: 80%;
+  position: relative;
+  text-align: center;
+  top: 20px;
   font-size: 25px;
 }

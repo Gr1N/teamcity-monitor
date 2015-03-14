@@ -9,11 +9,16 @@
     ],
     "builds_layout": [
         [
-            "build2"
+            {
+                "id": "build2",
+                "name": "Awesome build2"
+            }
         ],
         [
-            "",
-            "build1"
+            {
+                "id": "build1",
+                "name": "Awesome build1"
+            }
         ]
     ]
 }

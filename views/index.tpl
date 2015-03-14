@@ -17,15 +17,13 @@
     <% _.forEach(layouts, function(layout) { %>
       <div class="js-layout container">
         <% _.forEach(layout, function(build) { %>
-          <div class="item <%- build %>"></div>
+          <div class="item <%- build.id %>">
+            <p class="name"><%- build.name %></p>
+            <p class="commiter js-commiter"></p>
+          </div>
         <% }); %>
       </div>
     <% }); %>
-  </script>
-  <script type="text/template" id="js-tmpl-build">
-    <p class="name"><%- name %></p>
-    <p class="status"><%- statusText %></p>
-    <p class="commiter"><%- lastCommiter %></p>
   </script>
   <script src="/static/assets/bundle.js"></script>
 </body>
