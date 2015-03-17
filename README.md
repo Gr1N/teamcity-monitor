@@ -10,12 +10,30 @@ Why another monitoring tool:
 
 # Installation
 
-TBD
+Download and install:
 
+    % go get github.com/Gr1N/teamcity-monitor
+    % cd $GOPATH/src/github.com/Gr1N/teamcity-monitor
 
-# Usage
+(optional) Install [bee](http://beego.me/docs/install/bee.md) tool:
 
-TBD
+    % go get github.com/beego/bee
+
+Install node dependencies:
+
+    % npm install
+
+Build assets:
+
+    % node build
+
+Build and run:
+
+    % bee run
+
+...or:
+
+    % go build && ./teamcity-monitor
 
 
 # Deployment
