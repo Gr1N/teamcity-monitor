@@ -15,10 +15,9 @@ var docReady = require('doc-ready'),
         success: 'SUCCESS',
         failure: 'FAILURE'
     },
+    refreshTimeout,
 
-    classBuildFailure = 'failure',
-
-    pollingInterval = 5 * 60000;
+    classBuildFailure = 'failure';
 
 
 function initializeUrls() {
@@ -31,6 +30,8 @@ function initializeUrls() {
 function initializeMonitoring() {
     request('GET', urls.builds).done(function(response) {
         response = JSON.parse(response.getBody());
+
+        refreshTimeout = response.refreshTimeout * 1000;
 
         initializeLayouts(response.buildsLayout);
         initializeBuilds(response.builds);
@@ -63,7 +64,7 @@ function getBuildsStatus() {
             updateBuilds(diff);
         }
 
-        setTimeout(getBuildsStatus, pollingInterval);
+        setTimeout(getBuildsStatus, refreshTimeout);
     });
 }
 
