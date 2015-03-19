@@ -3,6 +3,8 @@
     "password": "password",
     "url": "https://teamcity.local",
 
+    "refreshTimeout": 300,
+
     "builds": [
         "build1",
         "build2"

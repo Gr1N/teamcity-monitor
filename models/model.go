@@ -39,6 +39,7 @@ const (
 var (
 	tcUrl              string
 	tcBasicAuthEncoded string
+	tcRefreshTimeout   int
 	tcBuilds           []string
 	tcBuildsLaout      [][]map[string]interface{}
 )
@@ -58,6 +59,8 @@ func init() {
 		tcConfig.String("password"),
 	)
 	tcBasicAuthEncoded = base64.StdEncoding.EncodeToString([]byte(tcBasicAuth))
+
+	tcRefreshTimeout, _ = tcConfig.Int("refreshTimeout")
 
 	tcRawBuilds, _ := tcConfig.DIY("builds")
 	tcRawBuildsCasted := tcRawBuilds.([]interface{})
@@ -108,8 +111,9 @@ func asyncHttpGets(urls []string) <-chan *HttpResponse {
 
 func Builds() map[string]interface{} {
 	builds := map[string]interface{}{
-		"builds":       tcBuilds,
-		"buildsLayout": tcBuildsLaout,
+		"refreshTimeout": tcRefreshTimeout,
+		"builds":         tcBuilds,
+		"buildsLayout":   tcBuildsLaout,
 	}
 
 	return builds
